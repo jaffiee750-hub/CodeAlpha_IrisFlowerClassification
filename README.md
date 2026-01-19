@@ -8,13 +8,11 @@ About the Project:
 The goal is to predict the type of iris flower based on its measurements.
 
 The dataset contains three flower species:
-
 •Setosa
 •Versicolor
 •Virginica
 
 Dataset Used:
-
 •Iris dataset (from scikit-learn)
 •Features used
   •Sepal Length
@@ -23,7 +21,6 @@ Dataset Used:
   •Petal Width
 
 Tools and Libraries:
-
 •Python
 •Pandas
 •Seaborn
@@ -31,7 +28,6 @@ Tools and Libraries:
 •Scikit-learn
 
 What This Project Does?
-
 •Loads the Iris dataset
 •Shows data visualization using pair plot
 •Splits data into training and testing sets
@@ -40,18 +36,15 @@ What This Project Does?
 •Predicts flower species for given input
 
 Model Used:
-
 •Logistic Regression
 •Used for classifying three different flower species
 
 Output:
-
 •Displays accuracy of the model
 •Shows classification report
 •Predicts species for a sample flower
 
 Example:
-
 Input: [5.1, 3.5, 1.4, 0.2]
 Output: Setosa
 

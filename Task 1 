@@ -1,0 +1,43 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, classification_report
+
+# 1. Load the Iris dataset
+iris = load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df['species'] = [iris.target_names[i] for i in iris.target]
+
+# 2. Visualize the Data (EDA)
+# This helps understand how the species are grouped
+sns.pairplot(df, hue='species', markers=["o", "s", "D"])
+plt.suptitle("Iris Species Clustering by Measurements", y=1.02)
+plt.show()
+
+# 3. Prepare Data for Training
+X = iris.data
+y = iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# 4. Train the Model
+# Multi_class='ovr' or 'multinomial' handles the 3-class classification
+model = LogisticRegression(max_iter=200)
+model.fit(X_train, y_train)
+
+# 5. Evaluate
+y_pred = model.predict(X_test)
+print(f"Model Accuracy: {accuracy_score(y_test, y_pred):.2%}")
+print("\nDetailed Performance Report:")
+print(classification_report(y_test, y_pred, target_names=iris.target_names))
+
+# 6. Predict on a custom sample
+# [Sepal Length, Sepal Width, Petal Length, Petal Width]
+custom_sample = [[5.1, 3.5, 1.4, 0.2]]
+prediction = model.predict(custom_sample)
+print(f"The predicted species for the sample is: {iris.target_names[prediction][0]}")
